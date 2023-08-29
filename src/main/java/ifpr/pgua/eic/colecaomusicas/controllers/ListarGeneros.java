@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Alert.AlertType;
 
 public class ListarGeneros implements Initializable{
@@ -35,7 +36,13 @@ public class ListarGeneros implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         lstGeneros.getItems().clear();
+
+        lstGeneros.getSelectionModel()
+        .setSelectionMode(SelectionMode.MULTIPLE);
+
         Resultado r = repositorio.listarGeneros();
+
+
 
         if(r.foiSucesso()){
             List<Genero> lista = (List)r.comoSucesso().getObj();
